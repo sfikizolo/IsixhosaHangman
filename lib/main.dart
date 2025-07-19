@@ -3,6 +3,7 @@ import 'display.dart';
 import 'game_logic.dart';
 import 'end_message.dart';
 import 'Keys.dart';
+import 'custom.dart';
 
 void main() {
   runApp(HangmanApp());
@@ -14,6 +15,7 @@ class HangmanApp extends StatelessWidget {
     return MaterialApp(
       title: 'Hangman Game',
       theme: ThemeData(primarySwatch: Colors.blue),
+      debugShowCheckedModeBanner: false,
       home: HangmanHome(),
     );
   }
@@ -40,7 +42,7 @@ class _HangmanHomeState extends State<HangmanHome> {
             SizedBox(height: 20),
             buildWordDisplay(logic),
             SizedBox(height: 30),
-            buildKeyboard(logic),
+            buildKeyboard(logic, () => setState(() {})),
             SizedBox(height: 30),
             buildEndMessage(logic),
             if (logic.isGameOver || logic.isGameWon)

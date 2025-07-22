@@ -1,12 +1,15 @@
 import 'dart:math';
 
 class GameLogic {
+  List<Map<String, String>> wordList = [];
+
   final List<String> words = [
     'XHOSA-Ulwimi lwenkobe',
     'ISIPHO-Unikwe ngombiyozo',
     'THANDO-phakathi kwabantu ababini',
     'ikati-isilwanyana esihlala endlini',
   ];
+
   String selectedWord = '';
   String theWord = ' ';
   String theHint = ' ';
@@ -19,7 +22,7 @@ class GameLogic {
 
   void startNewGame() {
     final random = Random();
-    theWord = words[random.nextInt(words.length)];
+    theWord = words[random.nextInt(words.length)].toUpperCase();
     List<String> splitWords = theWord.split('-');
     selectedWord = splitWords[0];
     theHint = splitWords[1];

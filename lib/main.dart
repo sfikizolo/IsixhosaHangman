@@ -3,7 +3,6 @@ import 'display.dart';
 import 'game_logic.dart';
 import 'end_message.dart';
 import 'Keys.dart';
-import 'custom.dart';
 
 void main() {
   runApp(HangmanApp());
@@ -38,7 +37,17 @@ class _HangmanHomeState extends State<HangmanHome> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text('Lives: ${logic.lives}', style: TextStyle(fontSize: 24)),
+            Row(
+              children: [
+                Text('Lives: ', style: TextStyle(fontSize: 20)),
+                ...List.generate(
+                  logic.lives,
+                  (index) =>
+                      Icon(Icons.favorite, color: Colors.pink, size: 24.0),
+                ),
+              ],
+            ),
+
             SizedBox(height: 20),
             buildWordDisplay(logic),
             SizedBox(height: 30),

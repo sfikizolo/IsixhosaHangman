@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'display.dart';
 import 'game_logic.dart';
@@ -54,13 +56,31 @@ class _HangmanHomeState extends State<HangmanHome> {
             buildKeyboard(logic, () => setState(() {})),
             SizedBox(height: 30),
             buildEndMessage(logic),
-            if (logic.isGameOver || logic.isGameWon)
+
+            if (logic.isGameWon)
               ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    logic.startNewGame();
-                  });
-                },
+                onPressed: logic.isGameWon
+                    ? () {
+                        setState(() {
+                          logic.nextWord();
+                        });
+                      }
+                    : null, // disables button when word is not yet guessed
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
+                child: Text('Next Word'),
+              ),
+            if (logic.isGameOver)
+              ElevatedButton(
+                onPressed: logic.isGameOver
+                    ? () {
+                        setState(() {
+                          logic.startNewGame();
+                        });
+                      }
+                    : null,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.pinkAccent,
+                ),
                 child: Text('Restart'),
               ),
           ],

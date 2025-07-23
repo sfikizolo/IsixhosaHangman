@@ -18,6 +18,7 @@ class GameLogic {
 
   GameLogic() {
     startNewGame();
+    nextWord();
   }
 
   void startNewGame() {
@@ -28,6 +29,15 @@ class GameLogic {
     theHint = splitWords[1];
     guessedLetters = [];
     lives = 5;
+  }
+
+  void nextWord() {
+    final random = Random();
+    theWord = words[random.nextInt(words.length)].toUpperCase();
+    List<String> splitWords = theWord.split('-');
+    selectedWord = splitWords[0];
+    theHint = splitWords[1];
+    guessedLetters = [];
   }
 
   void guessLetter(String letter) {

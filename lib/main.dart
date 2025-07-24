@@ -1,6 +1,5 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:hangman_games/action.dart';
 import 'display.dart';
 import 'game_logic.dart';
 import 'end_message.dart';
@@ -11,6 +10,8 @@ void main() {
 }
 
 class HangmanApp extends StatelessWidget {
+  const HangmanApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -23,6 +24,8 @@ class HangmanApp extends StatelessWidget {
 }
 
 class HangmanHome extends StatefulWidget {
+  const HangmanHome({super.key});
+
   @override
   _HangmanHomeState createState() => _HangmanHomeState();
 }
@@ -56,33 +59,7 @@ class _HangmanHomeState extends State<HangmanHome> {
             buildKeyboard(logic, () => setState(() {})),
             SizedBox(height: 30),
             buildEndMessage(logic),
-
-            if (logic.isGameWon)
-              ElevatedButton(
-                onPressed: logic.isGameWon
-                    ? () {
-                        setState(() {
-                          logic.nextWord();
-                        });
-                      }
-                    : null, // disables button when word is not yet guessed
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
-                child: Text('Next Word'),
-              ),
-            if (logic.isGameOver)
-              ElevatedButton(
-                onPressed: logic.isGameOver
-                    ? () {
-                        setState(() {
-                          logic.startNewGame();
-                        });
-                      }
-                    : null,
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.pinkAccent,
-                ),
-                child: Text('Restart'),
-              ),
+            actionButtons(logic, () => setState(() {}), context),
           ],
         ),
       ),

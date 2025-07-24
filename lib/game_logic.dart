@@ -8,6 +8,7 @@ class GameLogic {
     'ISIPHO-Unikwe ngombiyozo',
     'THANDO-phakathi kwabantu ababini',
     'ikati-isilwanyana esihlala endlini',
+    'Ukucoceka-the meaning',
   ];
 
   String selectedWord = '';
